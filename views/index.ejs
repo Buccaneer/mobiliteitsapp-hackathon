@@ -23,7 +23,7 @@
       <div id='container' ng-controller='MainCtrl as main'>
         <md-content>
           <md-card layout="column" >
-            
+
             <md-card-content>
 
                 <md-autocomplete
@@ -47,8 +47,8 @@
             </span>
           </md-item-template>
           <md-not-found>
-            No states matching "{{main.searchText}}" were found.
-            <a ng-click="main.newState(main.searchText)">Create a new one!</a>
+            {{main.searchText}}
+            <a ng-click="main.newLocation(main.searchText)">Create a new one!</a>
           </md-not-found>
         </md-autocomplete>
         <br/>

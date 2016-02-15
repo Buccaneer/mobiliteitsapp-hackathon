@@ -6,12 +6,13 @@ app.controller('MainCtrl', function($timeout, $q, $log){
     self.simulateQuery = false;
     self.isDisabled    = false;
     // list of `state` value/display objects
-    self.locations        = loadAll();
+    self.locations = loadAll();
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
-    self.newState = newState;
-    function newState(state) {
+    self.newLocation = newLocation;
+
+    function newLocation(state) {
       alert("Sorry! You'll need to create a Constituion for " + state + " first!");
     }
     // ******************************
