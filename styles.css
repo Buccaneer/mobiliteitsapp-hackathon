@@ -2,7 +2,6 @@
   height: 500px;
   background-color: black;
 }
-
 .containerVan {
   text-align: center;
   position: absolute;
@@ -27,10 +26,6 @@
   opacity: 0.8;
   width: 50%;
 }
-
-
-
-
 .cardView {
   height: 100px;
   margin: 0;
