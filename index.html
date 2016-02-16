@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="containerVan" ng-controller="MainCtrl as main">
-    <md-autocomplete md-selected-item="main.selectedItem" md-search-text-change="main.searchTextChange(main.searchText)" md-search-text="main.searchText" md-selected-item-change="main.selectedItemChange(item)" md-items="item in main.querySearch(main.searchText)"
+    <md-autocomplete md-input-id="van" md-selected-item="main.selectedItem" md-search-text-change="main.searchTextChange(main.searchText)" md-search-text="main.searchText" md-selected-item-change="main.selectedItemChange(item, 1)" md-items="item in main.querySearch(main.searchText)"
       md-item-text="item.name" md-min-length="0" placeholder="Van waar wil je vertrekken?">
       <md-item-template>
         <span class="item-title">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="containerNaar" ng-controller="MainCtrl as main">
-    <md-autocomplete md-selected-item="main.selectedItem" md-search-text-change="main.searchTextChange(main.searchText)" md-search-text="main.searchText" md-selected-item-change="main.selectedItemChange(item)" md-items="item in main.querySearch(main.searchText)"
+    <md-autocomplete md-input-id="naar" md-selected-item="main.selectedItem" md-search-text-change="main.searchTextChange(main.searchText)" md-search-text="main.searchText" md-selected-item-change="main.selectedItemChange(item, 2)" md-items="item in main.querySearch(main.searchText)"
       md-item-text="item.name" md-min-length="0" placeholder="Naar waar wil je gaan?">
       <md-item-template>
         <span class="item-title">
@@ -69,6 +69,7 @@
   <script src="./routes.js"></script>
   <script src="./locations.js"></script>
   <script src="./maptest.js"></script>
+  <script src="./map.controller.js"></script>
 </body>
 
 </html>
