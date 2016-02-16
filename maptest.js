@@ -6,14 +6,14 @@ app.controller('MainCtrl', function($timeout, $q, $log){
     self.simulateQuery = false;
     self.isDisabled    = false;
     // list of `state` value/display objects
-    self.locations = loadAll();
+    self.locations        = loadAll();
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
-    self.newLocation = newLocation;
+    self.newState = newState;
 
-    function newLocation(state) {
-      alert("Sorry! You'll need to create a Constituion for " + state + " first!");
+    function newState() {
+      $log("test");
     }
     // ******************************
     // Internal methods
@@ -81,3 +81,16 @@ app.controller('MainCtrl', function($timeout, $q, $log){
       };
     }
 });
+
+var map = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoicGlldGVyamFudiIsImEiOiJjaWtudXNjdW4wdHZudnRrbTlmMm93Z2k4In0.hLkiI0rXfp8IPGrzVO1cIQ'
+}).addTo(map);
+
+/*L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+*/
