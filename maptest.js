@@ -1,7 +1,7 @@
 var app = angular.module('mobiliteitsapp', ['ngAnimate', 'ngMaterial', 'ui-leaflet']);
 
 //Controllers
-app.controller('MainCtrl', function($timeout, $q, $log) {
+app.controller('MainCtrl', function($timeout, $q, $log, locationService) {
   var self = this;
   self.simulateQuery = false;
   self.isDisabled = false;
@@ -255,3 +255,21 @@ app.controller("MapCtrl", [function() {
   });
   */
 }]);
+
+app.service("locationService", function() {
+  var locations = storedLocations;
+
+  var addLocation = function(loc) {
+      locations.push(loc);
+  };
+
+  var getLocations = function(){
+      return locations;
+  };
+
+  return {
+    addLocation: addLocation,
+    getLocations: getLocations
+  };
+
+});
