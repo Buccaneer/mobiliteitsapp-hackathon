@@ -58,6 +58,7 @@
         "angular": false,
         "$": false,
         "L": false,
-        "storedRoutes": false
+        "storedRoutes": false,
+        "storedLocations": false
     }
 }

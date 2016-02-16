@@ -4,7 +4,7 @@ $(function() {
   var map = L.map("map").setView([51.0328, 3.7384], 14);
   var route = [];
   var visualRoute;
-  var fietsRoute = drawRoute(storedRoutes[0].PJ2SchoolByBike);
+  var fietsRoute = drawRoute(storedRoutes[0].PJ2SchoolByBike, "green");
   var busRoute = drawRoute(storedRoutes[1].PJ2SchoolByBus);
   var routes = {
     "Fiets": fietsRoute,
@@ -36,12 +36,10 @@ $(function() {
       "NjdW4wdHZudnRrbTlmMm93Z2k4In0.hLkiI0rXfp8IPGrzVO1cIQ"
   }).addTo(map);
 
-
-
-  function drawRoute(route) {
+  function drawRoute(route, color) {
     var routeDrawing = new L.LayerGroup();
     L.polyline(route, {
-      color: "red"
+      color: color === undefined ? "red" : color
     }).addTo(routeDrawing);
     //map.fitBounds(polyline.getBounds());
     L.marker([route[0].lat, route[0].lng]).addTo(routeDrawing);
@@ -66,6 +64,20 @@ $(function() {
     if (route.length > 1) {
       showRoute();
     }
+  }
+
+  function addPopup(marker) {
+    var container = $("<div />");
+    container.on("click", ".origin", function() {
+      //TODO
+    });
+    container.on("click", ".destination", function() {
+      //TODO
+    });
+    container.html("<a href='#' class='origin'>Set origin</a>.<br/>" +
+      "<a href='#' class='destination'>Set destination</a>."
+    );
+    marker.bindPopup(container[0]);
   }
 
   function clearRoute() {
@@ -108,30 +120,14 @@ $(function() {
     console.log("No storage available");
   }
 
-  var locations = [{
-    "name": "Kot",
-    "address": "Kotstraat 11",
-    "lat": 51.05426,
-    "lng": 3.72196
-  }, {
-    "name": "Cafe",
-    "address": "Cafestraat 25",
-    "lat": 51.05355,
-    "lng": 3.72454
-  }, {
-    "name": "School",
-    "address": "Schoolstraat 58",
-    "lat": 51.05304,
-    "lng": 3.72612
-  }, {
-    "name": "Thuis",
-    "address": "Thuisstraat 23",
-    "lat": 51.05252,
-    "lng": 3.72737
-  }];
-
-  localStorage.removeItem("locations");
-  localStorage.setItem("locations", JSON.stringify(locations));
+  var thuis = L.marker([storedLocations[0].lat, storedLocations[0].lng]).addTo(map);
+  var stage = L.marker([storedLocations[1].lat, storedLocations[1].lng]).addTo(map);
+  var school = L.marker([storedLocations[2].lat, storedLocations[2].lng]).addTo(map);
+  addPopup(thuis);
+  addPopup(stage);
+  addPopup(school);
+  //localStorage.removeItem("locations");
+  //localStorage.setItem("locations", JSON.stringify(locations));
 
   function logLocations(locations) {
     var json = "[";
@@ -149,7 +145,7 @@ $(function() {
     log(json);
   }
 
-  logLocations(JSON.parse(localStorage.locations));
+  //logLocations(JSON.parse(localStorage.locations));
 
 });
 
